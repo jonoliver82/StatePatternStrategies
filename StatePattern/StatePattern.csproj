@@ -33,6 +33,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=4.9.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\packages\Autofac.4.9.2\lib\net45\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -43,12 +47,30 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\StateTransitionEventArgs.cs" />
+    <Compile Include="Interfaces\IConnectionService.cs" />
+    <Compile Include="Interfaces\IEventAggregatorService.cs" />
+    <Compile Include="Interfaces\ILogger.cs" />
+    <Compile Include="Interfaces\IStateTransitionStrategy.cs" />
+    <Compile Include="Interfaces\ITestState.cs" />
+    <Compile Include="Models\ConnectionState.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ConnectionService.cs" />
+    <Compile Include="Services\ConsoleLogger.cs" />
+    <Compile Include="Services\EventAggregatorService.cs" />
+    <Compile Include="States\ConnectedState.cs" />
+    <Compile Include="States\DisconnectedState.cs" />
+    <Compile Include="Strategies\CallbackToControllerStateTransitionStrategy.cs" />
+    <Compile Include="Strategies\EventAggregatorStateTransitionStrategy.cs" />
+    <Compile Include="Strategies\RaiseEventStateTransitionStrategy.cs" />
+    <Compile Include="Strategies\SequentialStateTransitionStrategy.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
