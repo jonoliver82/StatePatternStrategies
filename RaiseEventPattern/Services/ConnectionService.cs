@@ -1,6 +1,7 @@
 ﻿using Core.Events;
 using Core.Interfaces;
 using Core.Models;
+using Core.Services;
 using RaiseEventPattern.Interfaces;
 using RaiseEventPattern.States;
 using System;
@@ -11,66 +12,23 @@ using System.Threading.Tasks;
 
 namespace RaiseEventPattern.Services
 {
-    public class ConnectionService : IConnectionService
+    public class ConnectionService : ConnectionServiceBase, IConnectionService
     {
-        private readonly ILogger _logger;
-        private bool _continue;
-        private ITestState _currentState;
-
-        public ConnectionService(ILogger logger)
+        public ConnectionService(IStateFactory stateFactory, ILogger logger)
+            : base(stateFactory, logger)
         {
-            _logger = logger;
-
-            _currentState = new DisconnectedState();
-            _currentState.ChangeState += _currentState_ChangeState;
-
-            _continue = true;
-
-            LogCurrentState();
+            ((ITestState)_currentState).ChangeState += _currentState_ChangeState;
         }
 
         private void _currentState_ChangeState(object sender, StateTransitionEventArgs e)
         {
+            // Unsubscribe from current state object
+            ((ITestState)_currentState).ChangeState -= _currentState_ChangeState;
+
             MoveToState(e.DesiredState);
-        }
 
-        public bool Continue => _continue;
-
-        public void HandleKeyPress(char key)
-        {
-            _currentState.HandleKeyPress(key);
-            LogCurrentState();
-        }
-
-        private void LogCurrentState()
-        {
-            _logger.Log("\nCurrent State: " + _currentState.Name);
-        }
-
-        public void MoveToState(ConnectionState desiredState)
-        {
-            switch (desiredState)
-            {
-                case ConnectionState.Connected:
-                    {
-                        _currentState.ChangeState -= _currentState_ChangeState;
-                        _currentState = new ConnectedState();
-                        _currentState.ChangeState += _currentState_ChangeState;
-                        break;
-                    }
-                case ConnectionState.Disconnected:
-                    {
-                        _currentState.ChangeState -= _currentState_ChangeState;
-                        _currentState = new DisconnectedState();
-                        _currentState.ChangeState += _currentState_ChangeState;
-                        break;
-                    }
-                default:
-                    {
-                        _logger.Log($"Unexpected ConnectionState: {desiredState}");
-                        break;
-                    }
-            }
+            // Subscribe to new state object
+            ((ITestState)_currentState).ChangeState += _currentState_ChangeState;
         }
     }
 }

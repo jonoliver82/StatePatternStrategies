@@ -8,6 +8,7 @@ using RaiseEventPattern.Interfaces;
 using Core.Services;
 using Core.Interfaces;
 using RaiseEventPattern.Services;
+using RaiseEventPattern.Factories;
 
 namespace RaiseEventPattern
 {
@@ -17,12 +18,13 @@ namespace RaiseEventPattern
         {
             var builder = new ContainerBuilder();
             builder.RegisterType<ConnectionService>().As<IConnectionService>().SingleInstance();
+            builder.RegisterType<StateFactory>().As<IStateFactory>();
             builder.RegisterType<ConsoleLogger>().As<ILogger>();
 
             var container = builder.Build();
             using (var scope = container.BeginLifetimeScope())
             {
-                Console.Write("Raise Event Pattern");
+                Console.WriteLine("Raise Event Pattern");
 
                 var service = scope.Resolve<IConnectionService>();
 

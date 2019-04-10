@@ -1,4 +1,5 @@
 ﻿using CallbackStatePattern.Interfaces;
+using Core.Interfaces;
 using Core.Models;
 using System;
 using System.Collections.Generic;
@@ -15,7 +16,7 @@ namespace CallbackStatePattern.States
 
         public string Name => "Connected";
 
-        public void HandleKeyPress(IConnectionService connectionService, char key)
+        public void HandleKeyPress(IConnectionServiceBase connectionService, char key)
         {
             if (char.ToUpper(key, CultureInfo.InvariantCulture) == KEY_DISCONNECT)
             {

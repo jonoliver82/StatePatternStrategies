@@ -1,6 +1,7 @@
 ﻿using Autofac;
 using Core.Interfaces;
 using Core.Services;
+using EventAggregatorPattern.Factories;
 using EventAggregatorPattern.Interfaces;
 using EventAggregatorPattern.Services;
 using System;
@@ -18,12 +19,13 @@ namespace EventAggregatorPattern
             var builder = new ContainerBuilder();
             builder.RegisterType<ConnectionService>().As<IConnectionService>().SingleInstance();
             builder.RegisterType<EventAggregatorService>().As<IEventAggregatorService>().SingleInstance();
+            builder.RegisterType<StateFactory>().As<IStateFactory>();
             builder.RegisterType<ConsoleLogger>().As<ILogger>();
 
             var container = builder.Build();
             using (var scope = container.BeginLifetimeScope())
             {
-                Console.Write("Event Aggregator Pattern");
+                Console.WriteLine("Event Aggregator Pattern");
 
                 var service = scope.Resolve<IConnectionService>();
 

@@ -1,4 +1,5 @@
 ﻿using Core.Events;
+using Core.Interfaces;
 using Core.Models;
 using EventAggregatorPattern.Interfaces;
 using System;
@@ -20,7 +21,7 @@ namespace EventAggregatorPattern.States
 
         public string Name => "Connected";
 
-        public void HandleKeyPress(char key)
+        public void HandleKeyPress(IConnectionServiceBase connectionService, char key)
         {
             _eventAggregatorService.Publish<StateTransitionEventArgs>(new StateTransitionEventArgs(ConnectionState.Disconnected));
         }

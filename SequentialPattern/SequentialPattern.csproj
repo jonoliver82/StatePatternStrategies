@@ -47,7 +47,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factories\SequentialStateFactory.cs" />
     <Compile Include="Interfaces\IConnectionService.cs" />
+    <Compile Include="Interfaces\ISequentialStateFactory.cs" />
     <Compile Include="Interfaces\ITestState.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

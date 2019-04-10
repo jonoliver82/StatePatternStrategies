@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Autofac;
 using CallbackStatePattern.Interfaces;
 using CallbackStatePattern.Services;
+using CallbackStatePattern.Factories;
 
 namespace CallbackStatePattern
 {
@@ -17,12 +18,13 @@ namespace CallbackStatePattern
         {
             var builder = new ContainerBuilder();
             builder.RegisterType<ConnectionService>().As<IConnectionService>().SingleInstance();
+            builder.RegisterType<StateFactory>().As<IStateFactory>();
             builder.RegisterType<ConsoleLogger>().As<ILogger>();
 
             var container = builder.Build();
             using (var scope = container.BeginLifetimeScope())
             {
-                Console.Write("Callback State Pattern");
+                Console.WriteLine("Callback State Pattern");
 
                 var service = scope.Resolve<IConnectionService>();
 

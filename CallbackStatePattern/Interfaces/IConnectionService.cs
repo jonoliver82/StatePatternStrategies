@@ -4,15 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Core.Models;
+using Core.Interfaces;
 
 namespace CallbackStatePattern.Interfaces
 {
-    public interface IConnectionService
+    public interface IConnectionService : IConnectionServiceBase
     {
-        bool Continue { get; }
-
-        void HandleKeyPress(char key);
-
-        void MoveToState(ConnectionState desiredState);
     }
 }

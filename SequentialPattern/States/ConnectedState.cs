@@ -1,4 +1,6 @@
-﻿using SequentialPattern.Interfaces;
+﻿using Core.Interfaces;
+using Core.Models;
+using SequentialPattern.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,13 +11,15 @@ namespace SequentialPattern.States
 {
     public class ConnectedState : ITestState
     {
+        public ConnectionState State => ConnectionState.Connected;
+
         public string Name => "Connected";
 
         public int Order => 2;
 
-        public void HandleKeyPress(IConnectionService connectionService, char key)
+        public void HandleKeyPress(IConnectionServiceBase connectionService, char key)
         {
-            connectionService.MoveToNextState();
+            ((IConnectionService)connectionService).MoveToNextState();
         }
     }
 }

@@ -41,9 +41,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Events\StateTransitionEventArgs.cs" />
+    <Compile Include="Interfaces\IConnectionServiceBase.cs" />
     <Compile Include="Interfaces\ILogger.cs" />
+    <Compile Include="Interfaces\IStateFactory.cs" />
+    <Compile Include="Interfaces\ITestStateBase.cs" />
     <Compile Include="Models\ConnectionState.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\ConnectionServiceBase.cs" />
     <Compile Include="Services\ConsoleLogger.cs" />
   </ItemGroup>
   <ItemGroup />

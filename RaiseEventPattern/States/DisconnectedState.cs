@@ -1,4 +1,5 @@
 ﻿using Core.Events;
+using Core.Interfaces;
 using Core.Models;
 using RaiseEventPattern.Interfaces;
 using System;
@@ -15,9 +16,9 @@ namespace RaiseEventPattern.States
 
         public string Name => "Disconnected";
 
-        public void HandleKeyPress(char key)
+        public void HandleKeyPress(IConnectionServiceBase connectionService, char key)
         {
-            ChangeState?.Invoke(this, new StateTransitionEventArgs(ConnectionState.Connected));
+            ChangeState?.Invoke(connectionService, new StateTransitionEventArgs(ConnectionState.Connected));
         }
     }
 }

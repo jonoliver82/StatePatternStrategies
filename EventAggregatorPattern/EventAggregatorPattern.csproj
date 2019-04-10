@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Factories\StateFactory.cs" />
     <Compile Include="Interfaces\IConnectionService.cs" />
     <Compile Include="Interfaces\IEventAggregatorService.cs" />
     <Compile Include="Interfaces\ITestState.cs" />
