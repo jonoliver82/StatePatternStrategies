@@ -4,17 +4,15 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{D28D4F81-220B-4B3B-9E44-7CB7413CFA5B}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{67EDA368-A08B-447E-BCE1-7F0399174003}</ProjectGuid>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>StatePattern</RootNamespace>
-    <AssemblyName>StatePattern</AssemblyName>
+    <RootNamespace>Core</RootNamespace>
+    <AssemblyName>Core</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -24,7 +22,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,10 +30,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Autofac, Version=4.9.2.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
-      <HintPath>..\packages\Autofac.4.9.2\lib\net45\Autofac.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -48,28 +41,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Events\StateTransitionEventArgs.cs" />
-    <Compile Include="Interfaces\IConnectionService.cs" />
-    <Compile Include="Interfaces\IEventAggregatorService.cs" />
     <Compile Include="Interfaces\ILogger.cs" />
-    <Compile Include="Interfaces\IStateTransitionStrategy.cs" />
-    <Compile Include="Interfaces\ITestState.cs" />
     <Compile Include="Models\ConnectionState.cs" />
-    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\CallbackConnectionService.cs" />
-    <Compile Include="Services\ConnectionService.cs" />
     <Compile Include="Services\ConsoleLogger.cs" />
-    <Compile Include="Services\EventAggregatorService.cs" />
-    <Compile Include="States\ConnectedState.cs" />
-    <Compile Include="States\DisconnectedState.cs" />
-    <Compile Include="Strategies\CallbackToControllerStateTransitionStrategy.cs" />
-    <Compile Include="Strategies\EventAggregatorStateTransitionStrategy.cs" />
-    <Compile Include="Strategies\RaiseEventStateTransitionStrategy.cs" />
-    <Compile Include="Strategies\SequentialStateTransitionStrategy.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="App.config" />
-    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
