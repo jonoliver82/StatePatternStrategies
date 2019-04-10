@@ -1,11 +1,6 @@
-﻿using Core.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using CallbackStatePattern.States;
+using Core.Interfaces;
 using Core.Models;
-using CallbackStatePattern.States;
 
 namespace CallbackStatePattern.Factories
 {

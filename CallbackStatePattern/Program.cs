@@ -1,14 +1,10 @@
-﻿using Core.Interfaces;
-using Core.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Autofac;
+﻿using Autofac;
+using CallbackStatePattern.Factories;
 using CallbackStatePattern.Interfaces;
 using CallbackStatePattern.Services;
-using CallbackStatePattern.Factories;
+using Core.Interfaces;
+using Core.Services;
+using System;
 
 namespace CallbackStatePattern
 {

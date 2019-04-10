@@ -1,24 +1,25 @@
-Demonstrates a State pattern, where the logic for each state is encapsulated into its own class.
+C# State Patterns
 
-Transitions between states are managed by the following strategies:
-
-CallbackToControllerStateTransitionStrategy:
-The strategy is tightly coupled to the controller, in this case passed to it as a parameter from the state.
-When a state requests a transition, a function is called on the controller object directly.
+The logic for each state is encapsulated into its own class.
 The controller uses a factory method on the enum to create a new instance of the desired state class.
 
-RaiseEventStateTransitionStrategy:
-To reduce the coupling between the states and controller, this strategy publishes an event without knowledge of its subscribers.
-The controller subscribes to the event at construction by providing a callback function to the executed when the event is published.
-The callback function then calls the function to change the state.
-The controller uses a factory method on the enum to create a new instance of the desired state class.
+CalbackStatePattern
+The state object calls the controller service function directly indicating the state that it should transition to.
+The state and controller and tightly coupled, as the state uses a reference to the controller passed to the function. 
+Alternatively this could be provided by dependency injection into the state constructor.
 
-EventAggregatorStateTransitionStrategy:
-Rather than the controller subscribing directly to the state transition strategy, it subscribes to an event aggregation service. The event aggregation service
-subscribes to the individual states and publishes them to the subscribers. This extra level of abstraction reduces the knowledge the controller has about how the source
-of the events. A centralised aggregator class also facilitates extra features that may be required such as authentiation, recording and failure recovery mechanisms.
-The controller uses a factory method on the enum to create a new instance of the desired state class.
+Event Aggregator Pattern
+The state object publishes an event to a central event aggregator requesting a state transition.
+The controller subscribes to the event aggregator for state transition event requests.
+This extra level of abstraction reduces the knowledge the controller has about how the source of the events. 
+A centralised aggregator class also facilitates extra features that may be required such as authentiation, recording and failure recovery mechanisms.
 
-SequentialStateTransitionStrategy:
+Raise Event Pattern
+To reduce the coupling between the states and controller, the state publishes an event without knowledge of its subscribers.
+The state object publishes an event to its direct subscribers requesting a state transition.
+The controller subscribes directly to the state object for the event.
+
+Sequential Pattern
 All the state objects are provided to the controller via dependency injection using reflection to locate all objects that implement the ITestState interface.
-When a state transition is requested, the controller changes its current state to the next state in the ordered list.
+The state object calls the controller service function directly to request transition to the next ordered state.
+Additional states can be introduced without changing the controller or factory code.

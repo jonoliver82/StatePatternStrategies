@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Autofac;
-using RaiseEventPattern.Interfaces;
-using Core.Services;
+﻿using Autofac;
 using Core.Interfaces;
-using RaiseEventPattern.Services;
+using Core.Services;
 using RaiseEventPattern.Factories;
+using RaiseEventPattern.Interfaces;
+using RaiseEventPattern.Services;
+using System;
 
 namespace RaiseEventPattern
 {
