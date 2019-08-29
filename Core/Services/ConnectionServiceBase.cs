@@ -24,7 +24,7 @@ namespace Core.Services
 
         protected IStateFactory StateFactory => _stateFactory;
 
-        public void HandleKeyPress(char key)
+        public virtual void HandleKeyPress(char key)
         {
             _currentState.HandleKeyPress(this, key);
             LogCurrentState();
